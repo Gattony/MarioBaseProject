@@ -39,9 +39,26 @@ bool InitSDL()
 	}
 }
 
-void CloseSDL();
+void CloseSDL()
+{
+	//release the window
+	SDL_DestroyWindow(g_window);
+	g_window = nullptr;
+
+	//quit SDL subsystems
+	IMG_Quit();
+	SDL_Quit();
+}
 
 int main(int argc, char* args[])
 {
+	if (InitSDL())
+	{
+		SDL_Delay(5000);
+	}
+
+	CloseSDL();
+
 	return 0;
+
 }
