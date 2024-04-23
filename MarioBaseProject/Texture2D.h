@@ -17,6 +17,7 @@ class Texture2D
 {
    public:
 	   Texture2D(SDL_Renderer* renderer);
+	   ~Texture2D();
 
 	   bool LoadFromFile(string path);
 	   void Free();
