@@ -18,7 +18,41 @@ Texture2D::~Texture2D()
 
 bool Texture2D::LoadFromFile(string path) 
 {
+	//remove memory used for a previous texture
+	Free();
+	SDL_Texture* p_texture = nullptr;
 
+	//Load the image
+	SDL_Surface* p_surface = IMG_Load(path.c_str());
+	if (p_surface != nullptr)
+	{
+		//create the texture from the pixels on the surface
+		m_texture = SDL_CreateTextureFromSurface(m_renderer, p_surface);
+		
+		if (m_texture == nullptr)
+		{
+			//colour key the image to be transparent
+			SDL_SetColorKey(p_surface, SDL_TRUE, SDL_MapRGB(p_surface->format, 0, 0xFF, 0xFF));
+
+			cout << "Unable to create texture from surface. Error: " << SDL_GetError();
+		}
+
+		else
+		{
+			m_width = p_surface->w;
+			m_height = p_surface->h;
+		}
+		//remove the loaded surface now that we have a texture
+		SDL_FreeSurface(p_surface);
+	}
+
+	else
+	{
+		cout << "Unable to create texture from surface. Error: " << IMG_GetError();
+	}
+
+	//Return the texture
+	return p_texture;
 }
 
 void Texture2D::Free() 
