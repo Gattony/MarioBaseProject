@@ -20,7 +20,6 @@ bool Texture2D::LoadFromFile(string path)
 {
 	//remove memory used for a previous texture
 	Free();
-	SDL_Texture* p_texture = nullptr;
 
 	//Load the image
 	SDL_Surface* p_surface = IMG_Load(path.c_str());
@@ -51,8 +50,8 @@ bool Texture2D::LoadFromFile(string path)
 		cout << "Unable to create texture from surface. Error: " << IMG_GetError();
 	}
 
-	//Return the texture
-	return p_texture;
+	//Return whether the process was successful
+	return m_texture != nullptr;
 }
 
 void Texture2D::Free() 

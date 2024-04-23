@@ -7,12 +7,6 @@ using namespace std;
 #include <string>
 #include "Commons.h"
 
-SDL_Renderer* m_renderer;
-SDL_Texture* m_texture;
-
-int m_width;
-int m_height;
-
 class Texture2D
 {
    public:
@@ -25,8 +19,13 @@ class Texture2D
 	   
 	   int GetWidth() { return m_width; }
 	   int GetHeight() { return m_height; }
-   private:
 
+   private:
+	   SDL_Renderer* m_renderer;
+	   SDL_Texture* m_texture;
+
+	   int m_width;
+	   int m_height;
 };
 
 #endif //0_TEXTURE2D_H
