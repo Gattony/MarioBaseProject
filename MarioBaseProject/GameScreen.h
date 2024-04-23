@@ -17,3 +17,7 @@ class GameScreen
 };
 
 #endif //0_GAMESCREENCLASS_H
+
+class Gamescreen
+{
+};
