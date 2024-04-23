@@ -7,17 +7,24 @@ using namespace std;
 #include "Commons.h"
 #include <SDL.h>
 
+class GamescreenLevel1 :Gamescreen
+{
+    public:
+	GamescreenLevel1(SDL_Renderer* renderer);
+	~GamescreenLevel1();
+
+	void Render() override;
+	void Update(float deltaTime, SDL_Event e) override;
+
+    private:
+	Texture2D* m_background_texture;
+	bool SetUpLevel();
+
+};
 
 class Texture2D
 {
-	GamescreenLevel1(SDL_Renderer* renderer);
-	~GamescreenLevel1();
-};
-
-class GamescreenLevel1:Gamescreen
-{
-	private:
-		Texture2D* m_background_texture;
+ 
 };
 
 #endif // _GAMESCREENLVL1_H
