@@ -4,20 +4,25 @@
 
 using namespace std;
 #include <SDL.h>
-
-class GameScreen
-{
-	SDL_Renderer* m_renderer;
-	
-	GameScreen(SDL_Renderer* renderer);
-	~GameScreen();
-
-	virtual void Render();
-	virtual void Update(float deltaTime, SDL_Event e);
-};
-
-#endif //0_GAMESCREENCLASS_H
+#include <string>
+#include "Commons.h"
 
 class Gamescreen
 {
+   public:
+	   Gamescreen(SDL_Renderer* renderer);
+	   ~Gamescreen();
+
+	   virtual void Render();
+	   virtual void Update(float deltaTime, SDL_Event e);
+
+   private:
+	   SDL_Renderer* m_renderer;
+	   SDL_Texture* m_texture;
+
+	   int m_width;
+	   int m_height;
 };
+
+
+#endif //_GAMESCREEN_H
