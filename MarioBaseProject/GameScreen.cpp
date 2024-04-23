@@ -12,3 +12,13 @@ Gamescreen::~Gamescreen()
 {
 	m_renderer = nullptr;
 }
+
+void Gamescreen::Render()
+{
+
+}
+
+void Gamescreen::Update(float deltaTime, SDL_Event e)
+{
+
+}
