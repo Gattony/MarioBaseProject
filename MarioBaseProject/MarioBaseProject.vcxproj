@@ -166,6 +166,7 @@
   <ItemGroup>
     <ClCompile Include="Gamescreen.cpp" />
     <ClCompile Include="GamescreenLevel1.cpp" />
+    <ClCompile Include="GamescreenManager.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Texture2D.cpp" />
   </ItemGroup>
@@ -181,6 +182,7 @@
     <ClInclude Include="constants.h" />
     <ClInclude Include="Gamescreen.h" />
     <ClInclude Include="GamescreenLevel1.h" />
+    <ClInclude Include="GamescreenManager.h" />
     <ClInclude Include="Texture2D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
