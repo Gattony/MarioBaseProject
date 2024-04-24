@@ -7,6 +7,8 @@ using namespace std;
 #include "Commons.h"
 #include <SDL.h>
 
+class Texture2D;
+
 class GamescreenLevel1 :Gamescreen
 {
     public:
@@ -21,10 +23,4 @@ class GamescreenLevel1 :Gamescreen
 	bool SetUpLevel();
 
 };
-
-class Texture2D
-{
- 
-};
-
 #endif // _GAMESCREENLVL1_H

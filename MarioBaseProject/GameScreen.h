@@ -15,11 +15,10 @@ class Gamescreen
 
 	   virtual void Render();
 	   virtual void Update(float deltaTime, SDL_Event e);
-
-   private:
 	   SDL_Renderer* m_renderer;
 	   SDL_Texture* m_texture;
 
+   private:
 	   int m_width;
 	   int m_height;
 };
