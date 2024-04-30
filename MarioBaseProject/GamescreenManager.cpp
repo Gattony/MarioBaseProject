@@ -23,6 +23,25 @@ void GamescreenManager::Render()
 	m_current_screen->Render();
 }
 
+void GamescreenManager::ChangeScreen(SCREENS new_screen)
+{
+	//clear up the old screen
+	if (m_current_screen != nullptr)
+	{
+		delete m_current_screen;
+	}
+	GamescreenLevel1* tempScreen;
+
+	switch (new_screen)
+	{
+	case SCREEN_LEVEL1:
+		tempScreen = new GamescreenLevel1(m_renderer);
+		m_current_screen = (Gamescreen*)tempScreen;
+		tempScreen;
+	default:;
+	}
+}
+
 void GamescreenManager::Update(float deltaTime, SDL_Event e)
 {
 	m_current_screen->Update(deltaTime, e);
