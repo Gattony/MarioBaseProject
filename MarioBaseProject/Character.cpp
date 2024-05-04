@@ -2,6 +2,8 @@
 #include "Texture2D.h"
 using namespace std;
 
+char input;
+
 Character::Character(SDL_Renderer* renderer, string imagePath, Vector2D start_position)
 {
 	
@@ -27,11 +29,30 @@ void Character::Render()
 
 void Character::Update(float deltaTime, SDL_Event e)
 {
-	switch
-    
+	switch (e.type) 
+	{
+	case SDL_KEYDOWN:
+		switch (e.key.keysym.sym)
+		{
+		    case SDLK_a:
+				m_position.x -= 1;
+				break;
+			case SDLK_d:
+				m_position.x = 1;
+				break;
+			default:
+				break;
+		}
+	}
+	
 }
 
 void Character::SetPosition(Vector2D new_position)
+{
+	m_position = new_position;
+}
+
+Vector2D:: Character GetPosition()
 {
 
 }
