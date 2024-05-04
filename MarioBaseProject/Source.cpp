@@ -75,6 +75,7 @@ bool InitSDL()
 
 void Render()
 {
+
 	//Clear the screen
 	SDL_SetRenderDrawColor(g_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(g_renderer);
@@ -108,6 +109,7 @@ void CloseSDL()
 
 bool Update()
 {
+
 	//Event handler
 	SDL_Event e;
 
@@ -123,6 +125,8 @@ bool Update()
 			break;
 	}
 
+	new_time = SDL_GetTicks();
+
 	game_screen_manager->Update((float)(new_time - g_old_time) / 1000.0f, e);
 	g_old_time = new_time;
 
@@ -135,7 +139,8 @@ int main(int argc, char* args[])
 	if (InitSDL())
 	{
 		game_screen_manager = new GamescreenManager(g_renderer, SCREEN_LEVEL1);
-		//set the time
+
+		//set the ticks
 		g_old_time = SDL_GetTicks();
 
 		//flag to check if we wish to quit
