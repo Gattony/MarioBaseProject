@@ -6,21 +6,25 @@ using namespace std;
 #include "Gamescreen.h"
 #include "Commons.h"
 #include <SDL.h>
+#include "Character.h"
 
 class Texture2D;
+class Character;
 
 class GamescreenLevel1 :Gamescreen
 {
-    public:
+public:
 	GamescreenLevel1(SDL_Renderer* renderer);
 	~GamescreenLevel1();
 
 	void Render() override;
 	void Update(float deltaTime, SDL_Event e) override;
 
-    private:
+private:
+	Character* my_character;
 	Texture2D* m_background_texture;
 	bool SetUpLevel();
+
 
 };
 #endif // _GAMESCREENLVL1_H

@@ -52,7 +52,7 @@ void Character::SetPosition(Vector2D new_position)
 	m_position = new_position;
 }
 
-Vector2D:: Character GetPosition()
+Vector2D Character::GetPosition()
 {
-
+	return m_position;
 }
