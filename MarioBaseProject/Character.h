@@ -11,6 +11,7 @@ using namespace std;
 class Texture2D;
 class MoveLeft;
 class MoveRight;
+
 class Character
 {
       public:

@@ -44,12 +44,14 @@ void Character::Render()
 
 void Character::MoveLeft(float deltaTime)
 {
-
+	m_facing_direction = FACING_LEFT;
+	m_position.x -= deltaTime;
 }
 
 void Character::MoveRight(float deltaTime)
 {
-
+	m_facing_direction = FACING_RIGHT;
+	m_position.x += deltaTime;
 }
 
 void Character::Update(float deltaTime, SDL_Event e)
@@ -87,11 +89,11 @@ void Character::Update(float deltaTime, SDL_Event e)
 		{
 		     case SDLK_a:
 				 m_position.x -= 3;
-				 m_moving_right = false;
+				 m_moving_left = false;
 				 break;
 			 case SDLK_d:
 				 m_position.x += 3;
-				 m_moving_left = false;
+				 m_moving_right = false;
 				 break;
 			 default:
 				 break;
