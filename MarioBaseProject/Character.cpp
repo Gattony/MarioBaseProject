@@ -35,10 +35,10 @@ void Character::Update(float deltaTime, SDL_Event e)
 		switch (e.key.keysym.sym)
 		{
 		    case SDLK_a:
-				m_position.x -= 1;
+				m_position.x -= 3;
 				break;
 			case SDLK_d:
-				m_position.x = 1;
+				m_position.x += 3;
 				break;
 			default:
 				break;

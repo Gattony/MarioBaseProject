@@ -1,6 +1,7 @@
 #include "GamescreenLevel1.h"
 #include <iostream>
 #include "Texture2D.h"
+#include "Character.h"
 
 using namespace std;
 
@@ -31,6 +32,7 @@ bool GamescreenLevel1::SetUpLevel()
 		m_background_texture = new Texture2D(m_renderer);
 
 		//set up player character
+		
 		my_character = new Character(m_renderer, "Images/Mario.png", Vector2D(64, 330));
 
 		if (!m_background_texture->LoadFromFile("Images/test.bmp"))
