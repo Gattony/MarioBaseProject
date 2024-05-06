@@ -21,6 +21,9 @@ class Character
           void SetPosition(Vector2D new_position);
           Vector2D GetPosition();
 
+      private:
+          FACING m_facing_direction;
+
       protected:
           SDL_Renderer* m_renderer;
           Vector2D m_position;

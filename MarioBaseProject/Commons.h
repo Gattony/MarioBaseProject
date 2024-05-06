@@ -16,6 +16,12 @@ struct Vector2D
     }
 };
 
+enum FACING
+{
+    FACING_LEFT,
+    FACING_RIGHT
+};
+
 enum SCREENS
 {
     SCREEN_INTRO,
