@@ -56,6 +56,20 @@ void Character::MoveRight(float deltaTime)
 
 void Character::Update(float deltaTime, SDL_Event e)
 {
+	//deal with jumping first
+	if (!m_jumping)
+	{
+		//adjust position
+		m_position.y -= m_jump_force * deltaTime;
+
+		//reduce jump force
+		m_jump_force -= JUMP_FORCE_DECREMENT * deltaTime;
+
+		//is jump force 0?
+		if (m_jump_force <= 0.0f)
+			m_jumping = false;
+	}
+
 	if (m_moving_left)
 	{
 		MoveLeft(deltaTime);
@@ -79,6 +93,7 @@ void Character::Update(float deltaTime, SDL_Event e)
 				m_moving_right = true;
 				break;
 			case SDLK_w:
+				Jump();
 				break;
 			default:
 				break;
@@ -98,19 +113,6 @@ void Character::Update(float deltaTime, SDL_Event e)
 		}
 	}
 
-	//deal with jumping first
-	if (!m_jumping)
-	{
-		//adjust position
-		m_position.y -= m_jump_force * deltaTime;
-
-		//reduce jump force
-		m_jump_force -= JUMP_FORCE_DECREMENT * deltaTime;
-
-		//is jump force 0?
-		if (m_jump_force <= 0.0f)
-			m_jumping = false;
-	}
 }
 
 void Character::AddGravity(float deltaTime)
@@ -127,13 +129,12 @@ void Character::AddGravity(float deltaTime)
 
 void Character::Jump()
 {
-	if (!m_jumping)
-	{
+		//JUMP
 		m_jump_force = INITIAL_JUMP_FORCE;
 		m_jumping = true;
 		m_can_jump = false;
-	}
 }
+
 void Character::SetPosition(Vector2D new_position)
 {
 	m_position = new_position;
