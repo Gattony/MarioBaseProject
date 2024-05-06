@@ -1,8 +1,8 @@
 #include "Character.h"
 #include "Texture2D.h"
+
 using namespace std;
 
-char input;
 
 Character::Character(SDL_Renderer* renderer, string imagePath, Vector2D start_position)
 {
@@ -45,13 +45,13 @@ void Character::Render()
 void Character::MoveLeft(float deltaTime)
 {
 	m_facing_direction = FACING_LEFT;
-	m_position.x -= deltaTime;
+	m_position.x -= deltaTime * MOVEMENTSPEED;
 }
 
 void Character::MoveRight(float deltaTime)
 {
 	m_facing_direction = FACING_RIGHT;
-	m_position.x += deltaTime;
+	m_position.x += deltaTime * MOVEMENTSPEED;
 }
 
 void Character::Update(float deltaTime, SDL_Event e)
@@ -99,6 +99,11 @@ void Character::Update(float deltaTime, SDL_Event e)
 				 break;
 		}
 	}
+}
+
+void Character::AddGravity(float deltaTime)
+{
+
 }
 
 void Character::SetPosition(Vector2D new_position)
