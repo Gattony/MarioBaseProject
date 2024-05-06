@@ -18,6 +18,7 @@ class Character
           Character(SDL_Renderer* renderer, string imagePath, Vector2D start_position);
           ~Character();
 
+          virtual void Jump();
           virtual void AddGravity(float deltaTime);
           virtual void Render();
           virtual void Update(float deltaTime, SDL_Event e);
@@ -32,6 +33,9 @@ class Character
           virtual void MoveRight(float deltaTime);
           bool m_moving_left;
           bool m_moving_right;
+          bool m_jumping;
+          bool m_can_jump;
+          float m_jump_force;
 
           SDL_Renderer* m_renderer;
           Vector2D m_position;

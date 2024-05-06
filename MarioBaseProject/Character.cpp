@@ -73,12 +73,12 @@ void Character::Update(float deltaTime, SDL_Event e)
 		switch (e.key.keysym.sym)
 		{
 		    case SDLK_a:
-				m_position.x -= 3;
 				m_moving_left = true;
 				break;
 			case SDLK_d:
-				m_position.x += 3;
 				m_moving_right = true;
+				break;
+			case SDLK_w:
 				break;
 			default:
 				break;
@@ -88,24 +88,52 @@ void Character::Update(float deltaTime, SDL_Event e)
 		switch (e.key.keysym.sym)
 		{
 		     case SDLK_a:
-				 m_position.x -= 3;
-				 m_moving_left = false;
+				 m_moving_right = false;
 				 break;
 			 case SDLK_d:
-				 m_position.x += 3;
-				 m_moving_right = false;
+				 m_moving_left = false;
 				 break;
 			 default:
 				 break;
 		}
 	}
+
+	//deal with jumping first
+	if (!m_jumping)
+	{
+		//adjust position
+		m_position.y -= m_jump_force * deltaTime;
+
+		//reduce jump force
+		m_jump_force -= JUMP_FORCE_DECREMENT * deltaTime;
+
+		//is jump force 0?
+		if (m_jump_force <= 0.0f)
+			m_jumping = false;
+	}
 }
 
 void Character::AddGravity(float deltaTime)
 {
-
+	if (m_position.y + 64 <= SCREEN_HEIGHT)
+	{
+		m_position.y += GRAVITY * deltaTime;
+	}
+	else
+	{
+		m_can_jump = true;
+	}
 }
 
+void Character::Jump()
+{
+	if (!m_jumping)
+	{
+		m_jump_force = INITIAL_JUMP_FORCE;
+		m_jumping = true;
+		m_can_jump = false;
+	}
+}
 void Character::SetPosition(Vector2D new_position)
 {
 	m_position = new_position;
