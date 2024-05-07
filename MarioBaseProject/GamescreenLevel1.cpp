@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Texture2D.h"
 #include "Character.h"
+#include "Collisions.h"
 
 using namespace std;
 
@@ -54,4 +55,9 @@ void GamescreenLevel1::Update(float deltaTime, SDL_Event e)
 	//update character
 	m_mario->Update(deltaTime, e);
 	m_luigi->Update(deltaTime, e);
+
+	if (Collisions::Instance()->Circle(m_mario, m_luigi))
+	{
+		cout << "Cirlce hit!" << endl;
+	}
 }

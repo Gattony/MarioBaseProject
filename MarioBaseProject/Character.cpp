@@ -14,6 +14,8 @@ Character::Character(SDL_Renderer* renderer, string imagePath, Vector2D start_po
 
 	m_facing_direction = FACING_RIGHT;
 
+	m_collision_radius = 15.0f;
+
 	if (!m_texture->LoadFromFile(imagePath))
 	{
 		cout << "Failed to load the file from image path" << endl;
@@ -47,7 +49,6 @@ void Character::AddGravity(float deltaTime)
 	if (m_position.y + 64 <= SCREEN_HEIGHT)
 	{
 		m_position.y += GRAVITY * deltaTime;
-		cout << m_position.y << endl;
 	}
 	else
 	{
@@ -74,6 +75,7 @@ void Character::MoveRight(float deltaTime)
 	m_facing_direction = FACING_RIGHT;
 	m_position.x += deltaTime * MOVEMENTSPEED;
 }
+
 
 void Character::Update(float deltaTime, SDL_Event e)
 {
@@ -139,6 +141,16 @@ void Character::Update(float deltaTime, SDL_Event e)
 		break;
 	}
 
+}
+
+Character::Rect2D GetCollisionBox()
+{
+	return Rect2D(m_position.x, m_position.y, m_texture->GetWidth(), m_texture->GetHeight());
+}
+
+float Character::GetCollisionRadius()
+{
+	return m_collision_radius;
 }
 
 void Character::SetPosition(Vector2D new_position)

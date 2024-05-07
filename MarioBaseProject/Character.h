@@ -7,6 +7,7 @@ using namespace std;
 #include "constants.h"
 #include <SDL.h>
 #include <iostream>
+#include "Texture2D.h"
 
 
 class Texture2D;
@@ -19,6 +20,8 @@ class Character
           Character(SDL_Renderer* renderer, string imagePath, Vector2D start_position);
           ~Character();
 
+          float GetCollisionRadius();
+          Rect2D GetCollisionBox();
           virtual void Jump();
           virtual void AddGravity(float deltaTime);
           virtual void Render();
@@ -37,6 +40,7 @@ class Character
           bool m_jumping;
           bool m_can_jump;
           float m_jump_force;
+          float m_collision_radius;
 
           SDL_Renderer* m_renderer;
           Vector2D m_position;
