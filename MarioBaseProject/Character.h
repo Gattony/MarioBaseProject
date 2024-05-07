@@ -8,6 +8,7 @@ using namespace std;
 #include <SDL.h>
 #include <iostream>
 
+
 class Texture2D;
 class MoveLeft;
 class MoveRight;

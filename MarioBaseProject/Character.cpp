@@ -44,7 +44,7 @@ void Character::Render()
 
 void Character::AddGravity(float deltaTime)
 {
-	if (m_position.y + 64 >= SCREEN_HEIGHT)
+	if (m_position.y + 64 <= SCREEN_HEIGHT)
 	{
 		m_position.y += GRAVITY * deltaTime;
 		cout << m_position.y << endl;
@@ -77,14 +77,18 @@ void Character::MoveRight(float deltaTime)
 
 void Character::Update(float deltaTime, SDL_Event e)
 {
+
+	AddGravity(deltaTime);
+
 	//deal with jumping first
-	if (!m_jumping)
+	if (m_jumping)
 	{
 		//adjust position
 		m_position.y -= m_jump_force * deltaTime;
 
 		//reduce jump force
 		m_jump_force -= JUMP_FORCE_DECREMENT * deltaTime;
+		
 
 		//is jump force 0?
 		if (m_jump_force <= 0.0f)
@@ -124,10 +128,10 @@ void Character::Update(float deltaTime, SDL_Event e)
 		switch (e.key.keysym.sym)
 		{
 		     case SDLK_a:
-				 m_moving_right = false;
+				 m_moving_left = false;
 				 break;
 			 case SDLK_d:
-				 m_moving_left = false;
+				 m_moving_right = false;
 				 break;
 			 default:
 				 break;
