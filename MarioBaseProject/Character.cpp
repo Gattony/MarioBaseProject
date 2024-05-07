@@ -42,6 +42,27 @@ void Character::Render()
 
 }
 
+void Character::AddGravity(float deltaTime)
+{
+	if (m_position.y + 64 >= SCREEN_HEIGHT)
+	{
+		m_position.y += GRAVITY * deltaTime;
+		cout << m_position.y << endl;
+	}
+	else
+	{
+		m_can_jump = true;
+	}
+}
+
+void Character::Jump()
+{
+	//JUMP
+	m_jump_force = INITIAL_JUMP_FORCE;
+	m_jumping = true;
+	m_can_jump = false;
+}
+
 void Character::MoveLeft(float deltaTime)
 {
 	m_facing_direction = FACING_LEFT;
@@ -111,28 +132,9 @@ void Character::Update(float deltaTime, SDL_Event e)
 			 default:
 				 break;
 		}
+		break;
 	}
 
-}
-
-void Character::AddGravity(float deltaTime)
-{
-	if (m_position.y + 64 <= SCREEN_HEIGHT)
-	{
-		m_position.y += GRAVITY * deltaTime;
-	}
-	else
-	{
-		m_can_jump = true;
-	}
-}
-
-void Character::Jump()
-{
-		//JUMP
-		m_jump_force = INITIAL_JUMP_FORCE;
-		m_jumping = true;
-		m_can_jump = false;
 }
 
 void Character::SetPosition(Vector2D new_position)
