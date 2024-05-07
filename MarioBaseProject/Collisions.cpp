@@ -16,7 +16,7 @@ Collisions::~Collisions()
 	m_instance = nullptr;
 }
 
-void Collisions::Collisions* m_instance()
+Collisions* Collisions::Instance()
 {
 	if (!m_instance)
 	{
