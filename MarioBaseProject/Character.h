@@ -21,13 +21,18 @@ class Character
           ~Character();
 
           float GetCollisionRadius();
-          Rect2D GetCollisionBox();
           virtual void Jump();
           virtual void AddGravity(float deltaTime);
           virtual void Render();
           virtual void Update(float deltaTime, SDL_Event e);
           void SetPosition(Vector2D new_position);
           Vector2D GetPosition();
+
+          inline Rect2D GetCollisionBox()
+          {
+              return Rect2D(m_position.x, m_position.y, m_texture->GetWidth(), m_texture->GetHeight());
+          }
+
 
       private:
           FACING m_facing_direction;

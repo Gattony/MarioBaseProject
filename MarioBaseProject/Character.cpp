@@ -80,7 +80,7 @@ void Character::MoveRight(float deltaTime)
 void Character::Update(float deltaTime, SDL_Event e)
 {
 
-	AddGravity(deltaTime);
+	//AddGravity(deltaTime);
 
 	//deal with jumping first
 	if (m_jumping)
@@ -95,6 +95,11 @@ void Character::Update(float deltaTime, SDL_Event e)
 		//is jump force 0?
 		if (m_jump_force <= 0.0f)
 			m_jumping = false;
+	}
+
+	else
+	{
+		AddGravity(deltaTime);
 	}
 
 	if (m_moving_left)
@@ -143,10 +148,6 @@ void Character::Update(float deltaTime, SDL_Event e)
 
 }
 
-Character::Rect2D GetCollisionBox()
-{
-	return Rect2D(m_position.x, m_position.y, m_texture->GetWidth(), m_texture->GetHeight());
-}
 
 float Character::GetCollisionRadius()
 {
