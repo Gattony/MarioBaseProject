@@ -3,6 +3,7 @@
 #define _GAMESCREENLVL1_H
 
 using namespace std;
+#include "LevelMap.h"
 #include "Gamescreen.h"
 #include "Commons.h"
 #include <SDL.h>
@@ -24,6 +25,8 @@ public:
 
 private:
 
+	LevelMap* m_level_map;
+	void SetLevelMap();
 	//Character* my_character;
 	Texture2D* m_background_texture;
 	bool SetUpLevel();

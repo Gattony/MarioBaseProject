@@ -1,15 +1,18 @@
 #include "Character.h"
 #include "Texture2D.h"
+#include "LevelMap.h"
+#include "constants.h"
 
 using namespace std;
 
 
-Character::Character(SDL_Renderer* renderer, string imagePath, Vector2D start_position)
+Character::Character(SDL_Renderer* renderer, string imagePath, Vector2D start_position, LevelMap* map)
 {
 	m_moving_left = false;
 	m_moving_right = false;
 	m_renderer = renderer;
 	m_position = start_position;
+	m_current_level_map = map;
 	m_texture = new Texture2D(m_renderer)	;
 
 	m_facing_direction = FACING_RIGHT;
@@ -58,10 +61,13 @@ void Character::AddGravity(float deltaTime)
 
 void Character::Jump()
 {
-	//JUMP
-	m_jump_force = INITIAL_JUMP_FORCE;
-	m_jumping = true;
-	m_can_jump = false;
+	if (!m_jumping)
+	{
+		//JUMP
+		m_jump_force = INITIAL_JUMP_FORCE;
+		m_jumping = true;
+		m_can_jump = false;
+	}
 }
 
 void Character::MoveLeft(float deltaTime)
@@ -80,7 +86,22 @@ void Character::MoveRight(float deltaTime)
 void Character::Update(float deltaTime, SDL_Event e)
 {
 
-	//AddGravity(deltaTime);
+	AddGravity(deltaTime);
+
+	//colisions position variables
+	int centralX_position = (int)(m_position.x + (m_texture->GetWidth() * 0.5)) / TILE_WIDTH;
+	int foot_position = (int)(m_position.y + m_texture->GetHeight()) / TILE_HEIGHT;
+
+	//deal with gravity
+	if (m_current_level_map->GetTileAt(foot_position, centralX_position) == 0)
+	{
+		AddGravity(deltaTime);
+	}
+	else
+	{
+		//collided with ground so we can jump again
+		m_can_jump = true;
+	}
 
 	//deal with jumping first
 	if (m_jumping)
@@ -97,10 +118,6 @@ void Character::Update(float deltaTime, SDL_Event e)
 			m_jumping = false;
 	}
 
-	else
-	{
-		AddGravity(deltaTime);
-	}
 
 	if (m_moving_left)
 	{

@@ -9,6 +9,7 @@ using namespace std;
 GamescreenLevel1::GamescreenLevel1(SDL_Renderer* renderer):Gamescreen(renderer)
 {
 	SetUpLevel();
+	LevelMap* m_level_map = nullptr;
 }
 
 GamescreenLevel1::~GamescreenLevel1()
@@ -37,8 +38,8 @@ bool GamescreenLevel1::SetUpLevel()
 
 		//set up player character
 		
-		m_luigi = new CharacterLuigi(m_renderer, "Images/Luigi.png", Vector2D(64, 330));
-		m_mario = new CharacterMario(m_renderer, "Images/Mario.png", Vector2D(100, 330));
+		m_luigi = new CharacterLuigi(m_renderer, "Images/Luigi.png", Vector2D(64, 330), m_level_map);
+		m_mario = new CharacterMario(m_renderer, "Images/Mario.png", Vector2D(100, 330),m_level_map);
 
 		return true;
 
@@ -50,14 +51,44 @@ bool GamescreenLevel1::SetUpLevel()
 	}
 }
 
+void GamescreenLevel1::SetLevelMap()
+{
+	int map[MAP_HEIGHT][MAP_WIDTH] ={ { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+									  { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+									  { 1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1 },
+									  { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+									  { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+									  { 0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0 },
+									  { 1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1 },
+									  { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+									  { 0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0 },
+									  { 1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1 },
+									  { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+									  { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+									  { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 } };
+	//clear any old maps
+	if (m_level_map != nullptr)
+	{
+		delete m_level_map;
+	}
+	
+	//set the new one
+	m_level_map = new LevelMap(map);
+}
+
 void GamescreenLevel1::Update(float deltaTime, SDL_Event e)
 {
 	//update character
 	m_mario->Update(deltaTime, e);
 	m_luigi->Update(deltaTime, e);
 
-	if (Collisions::Instance()->Circle(m_mario, m_luigi))
+	////if (Collisions::Instance()->Circle(m_mario, m_luigi))
+	//{
+	//	cout << "Cirlce hit!" << endl;
+	//}
+
+	if (Collisions::Instance()->Box(m_mario->GetCollisionBox(), m_luigi->GetCollisionBox()))
 	{
-		cout << "Cirlce hit!" << endl;
+		cout <<"Box hit!" << endl;
 	}
 }

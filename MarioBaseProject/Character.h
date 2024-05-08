@@ -8,7 +8,7 @@ using namespace std;
 #include <SDL.h>
 #include <iostream>
 #include "Texture2D.h"
-
+#include "LevelMap.h"
 
 class Texture2D;
 class MoveLeft;
@@ -17,7 +17,7 @@ class MoveRight;
 class Character
 {
       public:
-          Character(SDL_Renderer* renderer, string imagePath, Vector2D start_position);
+          Character(SDL_Renderer* renderer, string imagePath, Vector2D start_position, LevelMap* map);
           ~Character();
 
           float GetCollisionRadius();
@@ -36,6 +36,7 @@ class Character
 
       private:
           FACING m_facing_direction;
+          LevelMap* m_current_level_map;
 
       protected:
           virtual void MoveLeft(float deltaTime);
