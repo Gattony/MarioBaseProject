@@ -9,7 +9,6 @@ using namespace std;
 GamescreenLevel1::GamescreenLevel1(SDL_Renderer* renderer):Gamescreen(renderer)
 {
 	SetUpLevel();
-	LevelMap* m_level_map = nullptr;
 }
 
 GamescreenLevel1::~GamescreenLevel1()
@@ -20,6 +19,8 @@ GamescreenLevel1::~GamescreenLevel1()
 	m_mario = nullptr;
 	delete m_luigi;
 	m_luigi = nullptr;
+	delete m_level_map;
+	m_level_map = nullptr;
 }
 
 void GamescreenLevel1::Render()
@@ -32,23 +33,24 @@ void GamescreenLevel1::Render()
 
 bool GamescreenLevel1::SetUpLevel() 
 {
-	{
-		//load texture
-		m_background_texture = new Texture2D(m_renderer);
+	SetLevelMap();
 
-		//set up player character
+	//load texture
+	m_background_texture = new Texture2D(m_renderer);
+
+	//set up player character
 		
-		m_luigi = new CharacterLuigi(m_renderer, "Images/Luigi.png", Vector2D(64, 330), m_level_map);
-		m_mario = new CharacterMario(m_renderer, "Images/Mario.png", Vector2D(100, 330),m_level_map);
+	m_luigi = new CharacterLuigi(m_renderer, "Images/Luigi.png", Vector2D(64, 330), m_level_map);
+	m_mario = new CharacterMario(m_renderer, "Images/Mario.png", Vector2D(100, 330),m_level_map);
 
-		return true;
+	return true;
 
-		if (!m_background_texture->LoadFromFile("Images/test.bmp"))
-		{
-			cout << "Failed to load the background texture" << endl;
-			return false;
-		}
+	if (!m_background_texture->LoadFromFile("Images/test.bmp"))
+	{
+		cout << "Failed to load the background texture" << endl;
+		return false;
 	}
+	
 }
 
 void GamescreenLevel1::SetLevelMap()
