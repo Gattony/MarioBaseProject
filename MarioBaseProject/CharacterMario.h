@@ -12,6 +12,8 @@ class CharacterMario: public Character
 	CharacterMario(SDL_Renderer* renderer, string imagePath, Vector2D start_position, LevelMap* map);
 	~CharacterMario();
 
+	void Update(float deltaTime, SDL_Event e) override;
+
 };
 
 #endif // _CHARACTERMARIO_H

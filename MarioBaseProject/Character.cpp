@@ -61,7 +61,7 @@ void Character::AddGravity(float deltaTime)
 
 void Character::Jump()
 {
-	if (!m_jumping)
+	if (m_can_jump && !m_jumping)
 	{
 		//JUMP
 		m_jump_force = INITIAL_JUMP_FORCE;
@@ -85,24 +85,6 @@ void Character::MoveRight(float deltaTime)
 
 void Character::Update(float deltaTime, SDL_Event e)
 {
-
-	AddGravity(deltaTime);
-
-	//colisions position variables
-	int centralX_position = (int)(m_position.x + (m_texture->GetWidth() * 0.5)) / TILE_WIDTH;
-	int foot_position = (int)(m_position.y + m_texture->GetHeight()) / TILE_HEIGHT;
-
-	//deal with gravity
-	if (m_current_level_map->GetTileAt(foot_position, centralX_position) == 0)
-	{
-		AddGravity(deltaTime);
-	}
-	else
-	{
-		//collided with ground so we can jump again
-		m_can_jump = true;
-	}
-
 	//deal with jumping first
 	if (m_jumping)
 	{
@@ -117,52 +99,31 @@ void Character::Update(float deltaTime, SDL_Event e)
 		if (m_jump_force <= 0.0f)
 			m_jumping = false;
 	}
+	else {
+		//colisions position variables
+		int centralX_position = (int)(m_position.x + (m_texture->GetWidth() * 0.5)) / TILE_WIDTH;
+		int foot_position = (int)(m_position.y + m_texture->GetHeight()) / TILE_HEIGHT;
 
+		//deal with gravity
+		if (m_current_level_map->GetTileAt(foot_position, centralX_position) == 0)
+		{
+			AddGravity(deltaTime);
+		}
+		else
+		{
+			//collided with ground so we can jump again
+			m_can_jump = true;
+		}
+	}
 
 	if (m_moving_left)
 	{
 		MoveLeft(deltaTime);
-
 	}
-
 	else if (m_moving_right)
 	{
 		MoveRight(deltaTime);
 	}
-
-	switch (e.type) 
-	{
-	case SDL_KEYDOWN:
-		switch (e.key.keysym.sym)
-		{
-		    case SDLK_a:
-				m_moving_left = true;
-				break;
-			case SDLK_d:
-				m_moving_right = true;
-				break;
-			case SDLK_w:
-				Jump();
-				break;
-			default:
-				break;
-		}
-		break;
-	case SDL_KEYUP:
-		switch (e.key.keysym.sym)
-		{
-		     case SDLK_a:
-				 m_moving_left = false;
-				 break;
-			 case SDLK_d:
-				 m_moving_right = false;
-				 break;
-			 default:
-				 break;
-		}
-		break;
-	}
-
 }
 
 
