@@ -25,7 +25,7 @@ class PowBlock
 
 	private:
 		SDL_Renderer* m_renderer;
-		Vector2D* m_position;
+		Vector2D m_position;
 		Texture2D* m_texture;
 		LevelMap* m_level_map;
 
