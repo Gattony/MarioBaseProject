@@ -33,6 +33,7 @@ private:
 	float m_background_yPos;
 	PowBlock* m_pow_block;
 	LevelMap* m_level_map;
+	void DoScreenShake();
 	void SetLevelMap();
 	//Character* my_character;
 	Texture2D* m_background_texture;

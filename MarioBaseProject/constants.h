@@ -7,6 +7,7 @@ const int MAP_HEIGHT = 13;
 const int MAP_WIDTH = 16;
 const int TILE_WIDTH = 32;
 const int TILE_HEIGHT = 32;
+const int SHAKE_DURATION = 0.25f;
 
 //screen Dimensions
 #define SCREEN_WIDTH 512
