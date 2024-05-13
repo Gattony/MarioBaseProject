@@ -25,6 +25,8 @@ class Character
           virtual void AddGravity(float deltaTime);
           virtual void Render();
           virtual void Update(float deltaTime, SDL_Event e);
+          virtual void IsJumping();
+          virtual void CancelJump();
           void SetPosition(Vector2D new_position);
           Vector2D GetPosition();
 
@@ -47,6 +49,7 @@ class Character
           bool m_can_jump;
           float m_jump_force;
           float m_collision_radius;
+
 
           SDL_Renderer* m_renderer;
           Vector2D m_position;

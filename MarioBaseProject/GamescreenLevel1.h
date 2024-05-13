@@ -13,6 +13,7 @@ using namespace std;
 
 class Texture2D;
 class Character;
+class PowBlock;
 
 class GamescreenLevel1 :Gamescreen
 {
@@ -20,11 +21,17 @@ public:
 	GamescreenLevel1(SDL_Renderer* renderer);
 	~GamescreenLevel1();
 
+	void UpdatePOWBlock();
 	void Render() override;
 	void Update(float deltaTime, SDL_Event e) override;
 
 private:
 
+	bool m_screenshake;
+	float m_shake_time;
+	float m_wobble;
+	float m_background_yPos;
+	PowBlock* m_pow_block;
 	LevelMap* m_level_map;
 	void SetLevelMap();
 	//Character* my_character;
