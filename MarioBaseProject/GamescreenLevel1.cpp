@@ -33,6 +33,7 @@ void GamescreenLevel1::Render()
 	m_mario->Render();
 	m_luigi->Render();
 	m_pow_block->Render();
+	//__debugbreak();
 }
 
 bool GamescreenLevel1::SetUpLevel()
@@ -53,14 +54,13 @@ bool GamescreenLevel1::SetUpLevel()
 	m_screenshake = false;
 	m_background_yPos = 0.0f;
 
-	return true;
-
 	if (!m_background_texture->LoadFromFile("Images/BackgroundMB.png"))
 	{
 		cout << "Failed to load the background texture" << endl;
 		return false;
 	}
 
+	return true;
 }
 
 void GamescreenLevel1::SetLevelMap()
@@ -90,72 +90,40 @@ void GamescreenLevel1::SetLevelMap()
 
 void GamescreenLevel1::Update(float deltaTime, SDL_Event e)
 {
-	
-
 	//update character
 	m_mario->Update(deltaTime, e);
 	m_luigi->Update(deltaTime, e);
+
 	UpdatePOWBlock();
+
+	//end shake after duration
+	if (m_shake_time <= 0.0f)
+	{
+		m_screenshake = false;
+		m_shake_time = false;
+		m_background_yPos = 0.0f;
+	}
 
 	if (m_screenshake)
 	{
-		cout << "dmm" << endl;
 		m_shake_time -= deltaTime;
 		m_wobble++;
 		m_background_yPos = sin(m_wobble);
 		m_background_yPos *= 3.0f;
-
-		//end shake after duration
-		if (m_shake_time <= 0.0f)
-		{
-			m_shake_time = false;
-			m_background_yPos = 0.0f;
-		}
 	}
-	////if (Collisions::Instance()->Circle(m_mario, m_luigi))
-	//{
-	//	cout << "Cirlce hit!" << endl;
-	//}
-
-	if (Collisions::Instance()->Box(m_mario->GetCollisionBox(), m_luigi->GetCollisionBox()))
-	{
-		cout << "Box hit!" << endl;
-	}
-
-	/*
-	*  do the screen shake if required
-	*/
-	
 }
 
 void GamescreenLevel1::UpdatePOWBlock()
 {
 	if (Collisions::Instance()->Box(m_mario->GetCollisionBox(), m_pow_block->GetCollisionBox()))
 	{
-		cout << "Hit" << endl;
 		if (m_pow_block->IsAvailable())
 		{
-			cout << "DDDDDDD" << endl;
 			if (m_mario->IsJumping())
 			{
 				DoScreenShake();
 				m_pow_block->TakeHit();
 				m_mario->CancelJump();
-			}
-				
-		}
-	}
-
-	if (Collisions::Instance()->Box(m_luigi->GetCollisionBox(), m_pow_block->GetCollisionBox()))
-	{
-		cout << "Hit" << endl;
-		if (m_pow_block->IsAvailable())
-		{
-			if (m_luigi->IsJumping())
-			{
-				DoScreenShake();
-				m_pow_block->TakeHit();
-				m_luigi->CancelJump();
 			}
 		}
 	}
@@ -163,7 +131,6 @@ void GamescreenLevel1::UpdatePOWBlock()
 
 void GamescreenLevel1::DoScreenShake()
 {
-	cout << "äsdasd" << endl;
 	m_screenshake = true;
 	m_shake_time = SHAKE_DURATION;
 	m_wobble = 0.0f;

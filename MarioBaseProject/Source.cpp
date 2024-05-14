@@ -79,7 +79,7 @@ void Render()
 	SDL_SetRenderDrawColor(g_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(g_renderer);
 
-	g_texture->Render(Vector2D(), SDL_FLIP_NONE);
+	//g_texture->Render(Vector2D(), SDL_FLIP_NONE);
 	game_screen_manager->Render();
 
 	//update the screen
