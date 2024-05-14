@@ -37,7 +37,7 @@ void PowBlock::TakeHit()
 {
 	m_num_hits_left -= 1;
 	
-	if(m_num_hits_left -= 6)
+	if (m_num_hits_left <= 0 )
 	{
 		m_num_hits_left = 0;
 		m_level_map->ChangeTileAt(8, 7, 0);

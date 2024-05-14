@@ -25,8 +25,8 @@ class Character
           virtual void AddGravity(float deltaTime);
           virtual void Render();
           virtual void Update(float deltaTime, SDL_Event e);
-          virtual void IsJumping();
-          virtual void CancelJump();
+          bool IsJumping() { return m_jumping; }
+          bool CancelJump(){return m_jumping = false; };
           void SetPosition(Vector2D new_position);
           Vector2D GetPosition();
 
