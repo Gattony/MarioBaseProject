@@ -228,8 +228,19 @@ void GamescreenLevel1::DoScreenShake()
 
 void GamescreenLevel1::CreateKoopa(Vector2D position, FACING direction, float speed)
 {
-	m_koopa = new CharacterKoopa(m_renderer, "Image/Koopa.png", m_level_map, position, direction, speed);
+	m_koopa = new CharacterKoopa(m_renderer, "Images/Koopa.png", m_level_map, position, direction, speed);
 
 		// Add the koopa to the enemies vector
 		m_enemies.push_back(m_koopa);
+}
+
+void GamescreenLevel1::KoopaSpawn(float deltaTime, SDL_Event e)
+{
+	koopa_timer <- deltaTime;
+	if (koopa_timer <= 0)
+	{
+		CreateKoopa(Vector2D(150, 30), FACING_RIGHT, KOOPA_SPEED);
+		koopa_timer = 5.0f;
+		cout << "spawn" << endl;
+	}
 }

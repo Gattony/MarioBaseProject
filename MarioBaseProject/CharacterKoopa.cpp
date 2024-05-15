@@ -80,4 +80,6 @@ void CharacterKoopa::Update(float deltaTime, SDL_Event e)
 			m_moving_left = false;
 		}
 	}
+
+	Character::Update(deltaTime, e);
 }

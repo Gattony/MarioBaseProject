@@ -52,6 +52,8 @@ private:
 	//Enemies:
 	void UpdateEnemies(float deltaTime, SDL_Event e);
 	void CreateKoopa(Vector2D position, FACING direction, float speed);
+	float koopa_timer;
+	void KoopaSpawn(float deltaTime, SDL_Event e);
 	vector<CharacterKoopa*> m_enemies;
 
 };
