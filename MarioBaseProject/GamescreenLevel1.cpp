@@ -56,11 +56,12 @@ bool GamescreenLevel1::SetUpLevel()
 	//load texture
 	m_background_texture = new Texture2D(m_renderer);
 
-	//set up player character
+	//set up characters
 
 	m_luigi = new CharacterLuigi(m_renderer, "Images/Luigi.png", Vector2D(64, 100), m_level_map);
 	m_mario = new CharacterMario(m_renderer, "Images/Mario.png", Vector2D(100, 100), m_level_map);
-
+	CreateKoopa(Vector2D(150, 32), FACING_RIGHT, KOOPA_SPEED);
+	CreateKoopa(Vector2D(325, 32), FACING_LEFT, KOOPA_SPEED);
 	//set up powblocks
 
 	m_pow_block = new PowBlock(m_renderer, m_level_map);
@@ -219,5 +220,16 @@ void GamescreenLevel1::DoScreenShake()
 	m_screenshake = true;
 	m_shake_time = SHAKE_DURATION;
 	m_wobble = 0.0f;
+	for (auto& enenmy : m_enemies)
+	{
+		enenmy->TakeDamage();
+	}
 }
- 
+
+void GamescreenLevel1::CreateKoopa(Vector2D position, FACING direction, float speed)
+{
+	m_koopa = new CharacterKoopa(m_renderer, "Image/Koopa.png", m_level_map, position, direction, speed);
+
+		// Add the koopa to the enemies vector
+		m_enemies.push_back(m_koopa);
+}

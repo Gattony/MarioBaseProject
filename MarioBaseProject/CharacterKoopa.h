@@ -7,23 +7,25 @@ using namespace std;
 
 class CharacterKoopa:public Character
 {
-	private:
-		float m_single_sprite_w;
-		float m_single_sprite_h;
-		bool m_injured;;
-		float m_injured_time;
-		float m_movement_speed;
-		FACING m_facing_direction;
+public:
+	CharacterKoopa(SDL_Renderer* renderer, string imagePath, LevelMap* map, Vector2D start_position, FACING start_facing, float movement_speed);
+	~CharacterKoopa() {}
 
-		CharacterKoopa(SDL_Renderer* renderer, string imagePath, LevelMap* map, Vector2D start_position, FACING start_facing, float movement_speed);
-		~CharacterKoopa();
-		void FlipRightwayUp();
-	public:
-		void GetInjured() { return m_injured; }
-		void Render();
-		void Update(float deltaTime, SDL_Event e)override;
-		void TakeDamage();
-		void Jump();
+private:
+	float m_single_sprite_w;
+	float m_single_sprite_h;
+	bool m_injured;
+	float m_injured_time;
+	float m_movement_speed;
+	FACING m_facing_direction;
+
+	void FlipRightwayUp();
+public:
+	bool GetInjured() { return m_injured; }
+	void Render();
+	void Update(float deltaTime, SDL_Event e)override;
+	void TakeDamage();
+	void Jump();
 };
 
 #endif //_CHARACTERKOOPA_H

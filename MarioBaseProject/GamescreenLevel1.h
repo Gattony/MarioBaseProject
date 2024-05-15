@@ -45,6 +45,7 @@ private:
 	Texture2D* m_background_texture;
 
 	//Characters:
+	CharacterKoopa* m_koopa;
 	CharacterMario* m_mario;
 	CharacterLuigi* m_luigi;
 
