@@ -16,6 +16,7 @@ SDL_Window* g_window = nullptr;
 SDL_Renderer* g_renderer = nullptr;
 Texture2D* g_texture = nullptr;
 Uint32 new_time = SDL_GetTicks();
+Mix_Music* g_music = nullptr;
 
 //Function prototypes
 bool InitSDL()
@@ -70,6 +71,15 @@ bool InitSDL()
 	if (!g_texture -> LoadFromFile("Images/BackgroundMB.png"))
 	{
 		return false;
+	}
+}
+
+void LoadMusic()
+{
+	g_music = Mix_LoadMUS(path.c_str());
+	if (g_music == nullptr)
+	{
+		cout << "Failed to load music. Error: " << Mix_GetError() << endl;
 	}
 }
 
