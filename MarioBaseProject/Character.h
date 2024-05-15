@@ -27,6 +27,8 @@ class Character
           virtual void Update(float deltaTime, SDL_Event e);
           bool IsJumping() { return m_jumping; }
           bool CancelJump(){return m_jumping = false; };
+          bool GetAlive() { return m_alive; };
+          void SetAlive(bool isAlive) { m_alive = isAlive; }
           void SetPosition(Vector2D new_position);
           Vector2D GetPosition();
 
@@ -47,6 +49,7 @@ class Character
           bool m_moving_right;
           bool m_jumping;
           bool m_can_jump;
+          bool m_alive;
           float m_jump_force;
           float m_collision_radius;
 

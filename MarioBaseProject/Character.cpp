@@ -8,6 +8,7 @@ using namespace std;
 
 Character::Character(SDL_Renderer* renderer, string imagePath, Vector2D start_position, LevelMap* map)
 {
+	m_alive = true;
 	m_moving_left = false;
 	m_moving_right = false;
 	m_renderer = renderer;

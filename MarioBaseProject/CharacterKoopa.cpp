@@ -33,5 +33,56 @@ void CharacterKoopa::Jump()
 
 void CharacterKoopa::FlipRightwayUp()
 {
+	m_facing_direction = FACING_LEFT;
+	m_injured = false;
+}
 
+void CharacterKoopa::GetInjured()
+{
+	return m_injured;
+}
+
+void CharacterKoopa::Render()
+{
+	//Variable to hold left position of sprite
+	int left = 0.0f;
+
+	//If injured move the left postion to be the left position of the second image of the sprite sheet
+	if (m_injured)
+		left = m_single_sprite_w;
+
+	//Get the portion of the sprite sheet
+	//{xPos, yPos, width of sprite, height of sprite)
+	SDL_Rect portion_of_sprite = { left,0, m_single_sprite_w, m_single_sprite_h };
+
+	//Determine the position of the sprite drawing
+	SDL_Rect destRect = { (int)(m_position.x), (int)(m_position.y), m_single_sprite_w, m_single_sprite_h };
+
+	//Draw it facing the correct direction
+	if (m_facing_direction == FACING_RIGHT)
+	{
+		m_texture->Render(portion_of_sprite, destRect, SDL_FLIP_NONE);
+	}
+	else
+	{
+		m_texture->Render(portion_of_sprite, destRect, SDL_FLIP_HORIZONTAL);
+	}
+}
+
+void CharacterKoopa::Update(float deltaTime, SDL_Event e)
+{
+	if (!m_injured)
+	{
+		//Enemy is not injured so move
+		if (m_facing_direction == FACING_LEFT)
+		{
+			m_moving_left = true;
+			m_moving_right = false;
+		}
+		else if (m_facing_direction == FACING_RIGHT)
+		{
+			m_moving_right = true;
+			m_moving_left = false;
+		}
+	}
 }

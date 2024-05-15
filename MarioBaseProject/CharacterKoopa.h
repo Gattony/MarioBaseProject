@@ -19,6 +19,9 @@ class CharacterKoopa:public Character
 		~CharacterKoopa();
 		void FlipRightwayUp();
 	public:
+		void GetInjured() { return m_injured; }
+		void Render();
+		void Update(float deltaTime, SDL_Event e)override;
 		void TakeDamage();
 		void Jump();
 };

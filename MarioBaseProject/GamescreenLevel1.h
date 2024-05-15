@@ -10,6 +10,8 @@ using namespace std;
 #include "Character.h"
 #include "CharacterMario.h"
 #include "CharacterLuigi.h"
+#include "CharacterKoopa.h"
+#include <vector>
 
 class Texture2D;
 class Character;
@@ -33,14 +35,23 @@ private:
 	float m_background_yPos;
 	PowBlock* m_pow_block;
 	LevelMap* m_level_map;
+
+	//Mapping
 	void DoScreenShake();
 	void SetLevelMap();
+	bool SetUpLevel();
+
 	//Character* my_character;
 	Texture2D* m_background_texture;
-	bool SetUpLevel();
+
 	//Characters:
 	CharacterMario* m_mario;
 	CharacterLuigi* m_luigi;
+
+	//Enemies:
+	void UpdateEnemies(float deltaTime, SDL_Event e);
+	void CreateKoopa(Vector2D position, FACING direction, float speed);
+	vector<CharacterKoopa*> m_enemies;
 
 };
 #endif // _GAMESCREENLVL1_H
