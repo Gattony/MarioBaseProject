@@ -33,7 +33,7 @@ void CharacterKoopa::Jump()
 
 void CharacterKoopa::FlipRightwayUp()
 {
-	m_facing_direction = (m_facing_direction == FACING_LEFT) ? FACING_RIGHT : FACING_LEFT;d
+	m_facing_direction = (m_facing_direction == FACING_LEFT) ? FACING_RIGHT : FACING_LEFT;
 	m_injured = false;
 }
 
