@@ -127,6 +127,19 @@ void GamescreenLevel1::UpdatePOWBlock()
 			}
 		}
 	}
+
+	if (Collisions::Instance()->Box(m_luigi->GetCollisionBox(), m_pow_block->GetCollisionBox()))
+	{
+		if (m_pow_block->IsAvailable())
+		{
+			if (m_luigi->IsJumping())
+			{
+				DoScreenShake();
+				m_pow_block->TakeHit();
+				m_luigi->CancelJump();
+			}
+		}
+	}
 }
 
 void GamescreenLevel1::DoScreenShake()
