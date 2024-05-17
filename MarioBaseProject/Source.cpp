@@ -22,15 +22,20 @@ Mix_Music* g_music = nullptr;
 bool InitSDL()
 {
 	// Setup SDL
-
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
 		cout << "SDL did not initialise. Error:" << SDL_GetError();
 		return false;
 	}
-
 	else
 	{
+		//initialise the mixer
+		if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+		{
+			cout << "Mixer could not init. Error: " << Mix_GetError();
+			return false;
+		}
+
 		//setup passed so create window
 		g_window = SDL_CreateWindow("Games Engine Creation",
 			SDL_WINDOWPOS_UNDEFINED,
@@ -45,36 +50,36 @@ bool InitSDL()
 			cout << "Window was not created. Error:" << SDL_GetError();
 			return false;
 		}
-	}
+		
+		g_renderer = SDL_CreateRenderer(g_window, -1, SDL_RENDERER_ACCELERATED);
 
-	g_renderer = SDL_CreateRenderer(g_window, -1, SDL_RENDERER_ACCELERATED);
-
-	if (g_renderer != nullptr)
-	{
-		//init PNG loading
-		int imageFlags = IMG_INIT_PNG;
-		if (!(IMG_Init(imageFlags) & imageFlags))
+		if (g_renderer != nullptr)
 		{
-			cout << "SDL_Image could not initialise.Error:" << IMG_GetError();
+			//init PNG loading
+			int imageFlags = IMG_INIT_PNG;
+			if (!(IMG_Init(imageFlags) & imageFlags))
+			{
+				cout << "SDL_Image could not initialise.Error:" << IMG_GetError();
+				return false;
+			}
+		}
+		else
+		{
+			cout << "Renderer could not initialise.Error:" << SDL_GetError();
+			return false;
+		}
+
+		//Load the background texture
+		g_texture = new Texture2D(g_renderer);
+
+		if (!g_texture->LoadFromFile("Images/BackgroundMB.png"))
+		{
 			return false;
 		}
 	}
-	else
-	{
-		cout << "Renderer could not initialise.Error:" << SDL_GetError();
-		return false;
-	}
-
-	//Load the background texture
-	g_texture = new Texture2D(g_renderer);
-
-	if (!g_texture -> LoadFromFile("Images/BackgroundMB.png"))
-	{
-		return false;
-	}
 }
 
-void LoadMusic()
+void LoadMusic(string path)
 {
 	g_music = Mix_LoadMUS(path.c_str());
 	if (g_music == nullptr)
@@ -113,6 +118,10 @@ void CloseSDL()
 	//destroy the game screen manager
 	delete game_screen_manager;
 	game_screen_manager = nullptr;
+
+	//clear up music
+	Mix_FreeMusic(g_music);
+	g_music = nullptr;
 }
 
 bool Update()
@@ -146,6 +155,12 @@ int main(int argc, char* args[])
 {
 	if (InitSDL())
 	{
+		LoadMusic("Music/Mario.mp3");
+		if (Mix_PlayingMusic() == 0)
+		{
+			Mix_PlayMusic(g_music, -1);
+		}
+
 		game_screen_manager = new GamescreenManager(g_renderer, SCREEN_LEVEL1);
 
 		//set the ticks

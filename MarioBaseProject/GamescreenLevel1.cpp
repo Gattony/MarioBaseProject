@@ -257,7 +257,9 @@ void GamescreenLevel1::KoopaSpawn(float deltaTime, SDL_Event e)
 	if (koopa_timer <= 0)
 	{
 		CreateKoopa(Vector2D(150, 30), FACING_RIGHT, KOOPA_SPEED);
-		koopa_timer = 5.0f;
-		cout << "spawn" << endl;
+		koopa_timer = 10.0f;
+
+		CreateKoopa(Vector2D(300, 30), FACING_LEFT, KOOPA_SPEED);
+		koopa_timer = 10.0f;
 	}
 }
