@@ -108,6 +108,7 @@ void GamescreenLevel1::Update(float deltaTime, SDL_Event e)
 	m_mario->Update(deltaTime, e);
 	m_luigi->Update(deltaTime, e);
 
+	KoopaSpawn(deltaTime, e);
 	UpdateEnemies(deltaTime, e);
 	UpdatePOWBlock();
 
@@ -168,17 +169,21 @@ void GamescreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e)
 			if (m_enemies[i]->GetPosition().y > 300.0f)
 			{
 				//is the enemy off screen to the left / right?
-				if (m_enemies[i]->GetPosition().x < (float)(-m_enemies[i]->GetCollisionBox().width * 0.5f) || m_enemies[
-					i]->GetPosition().x > SCREEN_WIDTH - (float)(m_enemies[i]->GetCollisionBox().width * 0.55f))
+				if (m_enemies[i]->GetPosition().x < (float)(-m_enemies[i]->GetCollisionBox().width * 0.5f) || 
+					m_enemies[i]->GetPosition().x > SCREEN_WIDTH - (float)(m_enemies[i]->GetCollisionBox().width * 0.55f))
 					m_enemies[i]->SetAlive(false);
 			}
-			//now do the update
+			else 
+			{
+				m_enemies[i]->CheckBoundaries();
+			}
 
+			//now do the update
 			m_enemies[i]->Update(deltaTime, e);
 
 			//check to see if enemy collides with player
-			if ((m_enemies[i]->GetPosition().y > 300.0f || m_enemies[i]->GetPosition().y <= 64.0f) && (m_enemies[i]->
-				GetPosition().x < 64.0f || m_enemies[i]->GetPosition().x > SCREEN_WIDTH - 96.0f))
+			if ((m_enemies[i]->GetPosition().y > 300.0f || m_enemies[i]->GetPosition().y <= 64.0f) && 
+				(m_enemies[i]->GetPosition().x < 64.0f || m_enemies[i]->GetPosition().x > SCREEN_WIDTH - 96.0f))
 			{
 				//ignore collisions if behind pipe
 			}
@@ -193,8 +198,21 @@ void GamescreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e)
 					else
 					{
 						//kill mario
+						m_mario->SetAlive(false);
 					}
+				}
 
+				if (Collisions::Instance()->Circle(m_enemies[i], m_luigi))
+				{
+					if (m_enemies[i]->GetInjured())
+					{
+						m_enemies[i]->SetAlive(false);
+					}
+					else
+					{
+						//kill luigi
+						m_luigi->SetAlive(false);
+					}
 				}
 			}
 
@@ -206,7 +224,6 @@ void GamescreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e)
 		}
 
 		//remove dead enemies -1 each update
-
 		if (enemyIndexToDelete != -1)
 		{
 			m_enemies.erase(m_enemies.begin() + enemyIndexToDelete);
@@ -236,7 +253,7 @@ void GamescreenLevel1::CreateKoopa(Vector2D position, FACING direction, float sp
 
 void GamescreenLevel1::KoopaSpawn(float deltaTime, SDL_Event e)
 {
-	koopa_timer <- deltaTime;
+	koopa_timer -= deltaTime;
 	if (koopa_timer <= 0)
 	{
 		CreateKoopa(Vector2D(150, 30), FACING_RIGHT, KOOPA_SPEED);

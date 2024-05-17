@@ -80,6 +80,26 @@ void CharacterKoopa::Update(float deltaTime, SDL_Event e)
 			m_moving_left = false;
 		}
 	}
+	else {
+		m_moving_right = false;
+		m_moving_left = false;
+
+		m_injured_time -= deltaTime;
+		if (m_injured_time <= 0) {
+			m_injured = false;
+		}
+	}
 
 	Character::Update(deltaTime, e);
+}
+
+void CharacterKoopa::CheckBoundaries() {
+	if (m_position.x <= 0 && m_facing_direction == FACING_LEFT) 
+	{
+		m_facing_direction = FACING_RIGHT;
+	}
+	else if (m_position.x + m_single_sprite_w >= SCREEN_WIDTH && m_facing_direction == FACING_RIGHT) 
+	{
+		m_facing_direction = FACING_LEFT;
+	}
 }

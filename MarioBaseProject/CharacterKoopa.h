@@ -20,12 +20,14 @@ private:
 	FACING m_facing_direction;
 
 	void FlipRightwayUp();
+
 public:
 	bool GetInjured() { return m_injured; }
 	void Render();
 	void Update(float deltaTime, SDL_Event e)override;
 	void TakeDamage();
 	void Jump();
+	void CheckBoundaries();
 };
 
 #endif //_CHARACTERKOOPA_H
