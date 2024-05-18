@@ -40,7 +40,6 @@ void GamescreenManager::ChangeScreen(SCREENS new_screen)
 		tempScreen;
 	default:;
 	}
-
 }
 
 void GamescreenManager::Update(float deltaTime, SDL_Event e)
