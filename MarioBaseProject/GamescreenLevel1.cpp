@@ -43,6 +43,7 @@ void GamescreenLevel1::Render()
 
 	//draw the background
 	m_background_texture->Render(Vector2D(0, m_background_yPos), SDL_FLIP_NONE);
+
 	m_mario->Render();
 	m_luigi->Render();
 	m_pow_block->Render();
