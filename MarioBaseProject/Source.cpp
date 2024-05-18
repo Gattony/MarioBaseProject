@@ -126,7 +126,7 @@ void CloseSDL()
 
 bool Update()
 {
-
+	Uint32 new_time = SDL_GetTicks();
 	//Event handler
 	SDL_Event e;
 
@@ -137,9 +137,19 @@ bool Update()
 	switch (e.type)
 	{
 		//click the 'X' to quit
-	    case SDL_QUIT:
-			return true;
+	case SDL_QUIT:
+		return true;
+		break;
+	case SDL_KEYDOWN:
+		switch (e.key.keysym.sym)
+		{
+		case SDLK_1:
+			game_screen_manager->ChangeScreen(SCREEN_INTRO);
 			break;
+		case SDLK_2:
+			game_screen_manager->ChangeScreen(SCREEN_LEVEL1);
+			break;
+		}
 	}
 
 	new_time = SDL_GetTicks();

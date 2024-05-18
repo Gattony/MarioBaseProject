@@ -170,6 +170,7 @@
     <ClCompile Include="CharacterMario.cpp" />
     <ClCompile Include="Collisions.cpp" />
     <ClCompile Include="Gamescreen.cpp" />
+    <ClCompile Include="GamescreenIntro.cpp" />
     <ClCompile Include="GamescreenLevel1.cpp" />
     <ClCompile Include="GamescreenManager.cpp" />
     <ClCompile Include="LevelMap.cpp" />
@@ -193,6 +194,7 @@
     <ClInclude Include="Commons.h" />
     <ClInclude Include="constants.h" />
     <ClInclude Include="Gamescreen.h" />
+    <ClInclude Include="GamescreenIntro.h" />
     <ClInclude Include="GamescreenLevel1.h" />
     <ClInclude Include="GamescreenManager.h" />
     <ClInclude Include="LevelMap.h" />
