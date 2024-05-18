@@ -13,10 +13,18 @@ GamescreenIntro::~GamescreenIntro()
 	m_background_texture = nullptr;
 }
 
-void GamescreenIntro::SetUpLevel()
+bool GamescreenIntro::SetUpLevel()
 {
 	//load texture
 	m_background_texture = new Texture2D(m_renderer);
+
+	if (!m_background_texture->LoadFromFile("Images/Titlescreen.png"))
+	{
+		cout << "Failed to load the background texture" << endl;
+		return false;
+	}
+
+	return true;
 }
 
 void GamescreenIntro::Render()

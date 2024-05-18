@@ -14,7 +14,8 @@ class GamescreenIntro :public Gamescreen
 	public:
 	GamescreenIntro(SDL_Renderer* renderer);
 	~GamescreenIntro();
-	void SetUpLevel();
+
+	bool SetUpLevel();
 	void Render();
 	void Update(float deltaTime, SDL_Event e);
 
