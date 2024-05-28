@@ -1,5 +1,6 @@
 //Be grateful for humble beginnings, because the next level will always require so much more of you
 #include <SDL.h>
+#include <SDL_ttf.h>
 #include <SDL_image.h>
 #include <SDL_mixer.h>
 #include "constants.h"
@@ -21,6 +22,12 @@ Mix_Music* g_music = nullptr;
 //Function prototypes
 bool InitSDL()
 {
+	if (TTF_Init() < 0) 
+	{
+		cout << "Error: " << TTF_GetError() << endl;
+		return false;
+	}
+	
 	// Setup SDL
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
