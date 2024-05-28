@@ -22,3 +22,13 @@ void Gamescreen::Update(float deltaTime, SDL_Event e)
 {
 
 }
+
+void Gamescreen::SetGameState(GAMESTATE)
+{
+
+}
+
+void Gamescreen::SetNextGameState(GAMESTATE)
+{
+
+}

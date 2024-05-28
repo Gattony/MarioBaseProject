@@ -17,10 +17,20 @@ class Gamescreen
 	   virtual void Update(float deltaTime, SDL_Event e);
 	   SDL_Renderer* m_renderer;
 	   SDL_Texture* m_texture;
+	   inline void GetGameState(GAMESTATE INTRO_STATE);
+	   inline void GetNextGameState(GAMESTATE GAME_STATE);
 
    private:
 	   int m_width;
 	   int m_height;
+
+   protected:
+	   GAMESTATE currentGameState;
+	   GAMESTATE nextGameState;
+
+	   void SetGameState(GAMESTATE);
+	   void SetNextGameState(GAMESTATE);
+
 };
 
 
