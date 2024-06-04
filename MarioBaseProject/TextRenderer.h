@@ -24,3 +24,4 @@ private:
 };
 
 #endif //_TEXTRENDRER_H
+
