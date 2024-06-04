@@ -51,5 +51,4 @@ enum GAMESTATE {
     EXIT_STATE = 0,
     INTRO_STATE,
     GAME_STATE,
-    GAME_STATE2
 };
