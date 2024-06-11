@@ -34,6 +34,8 @@ Character::~Character()
 
 void Character::Render()
 {
+	if (!m_alive) return;
+
 	m_texture->Render(m_position, SDL_FLIP_NONE);
 
 	if (m_facing_direction == FACING_RIGHT)
@@ -86,6 +88,8 @@ void Character::MoveRight(float deltaTime)
 
 void Character::Update(float deltaTime, SDL_Event e)
 {
+	if (!m_alive) return;
+
 	//deal with jumping first
 	if (m_jumping)
 	{
@@ -143,3 +147,4 @@ Vector2D Character::GetPosition()
 {
 	return m_position;
 }
+
