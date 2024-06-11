@@ -45,8 +45,9 @@ private:
 	Texture2D* m_background_texture;
 
 	//Characters:
+	void UpdateCharacters();
 	CharacterKoopa* m_koopa;
-	CharacterMario* m_mario;
+	CharacterMario* m_mario; 
 	CharacterLuigi* m_luigi;
 
 	//Enemies:

@@ -19,6 +19,7 @@ class PowBlock;
 
 class GamescreenLevel2 :Gamescreen
 {
-
+	GamescreenLevel2(SDL_Renderer* renderer) :Gamescreen(renderer);
+	~(GamescreenLevel2);
 };
 #endif //GAMESCREENLEVEL2_H

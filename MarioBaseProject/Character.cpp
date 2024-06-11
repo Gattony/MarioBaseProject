@@ -34,6 +34,10 @@ Character::~Character()
 
 void Character::Render()
 {
+<<<<<<< HEAD
+=======
+	//Deleting the sprite if death
+>>>>>>> parent of 903d7e1 (ddd)
 	if (!m_alive) return;
 
 	m_texture->Render(m_position, SDL_FLIP_NONE);
@@ -88,6 +92,10 @@ void Character::MoveRight(float deltaTime)
 
 void Character::Update(float deltaTime, SDL_Event e)
 {
+<<<<<<< HEAD
+=======
+	//Deleting the updates if death
+>>>>>>> parent of 903d7e1 (ddd)
 	if (!m_alive) return;
 
 	//deal with jumping first
@@ -147,3 +155,4 @@ Vector2D Character::GetPosition()
 {
 	return m_position;
 }
+
