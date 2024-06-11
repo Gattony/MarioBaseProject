@@ -112,7 +112,6 @@ void GamescreenLevel1::Update(float deltaTime, SDL_Event e)
 	KoopaSpawn(deltaTime, e);
 	UpdateEnemies(deltaTime, e);
 	UpdatePOWBlock();
-	UpdateCharacters();
 
 	//end shake after duration
 	if (m_shake_time <= 0.0f)
@@ -184,7 +183,7 @@ void GamescreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e)
 			m_enemies[i]->Update(deltaTime, e);
 
 			//check to see if enemy collides with player
-			if ((m_enemies[i]->GetPosition().y > 300.0f || m_enemies[i]->GetPosition().y <= 64.0f) &&
+			if ((m_enemies[i]->GetPosition().y > 300.0f || m_enemies[i]->GetPosition().y <= 64.0f) && 
 				(m_enemies[i]->GetPosition().x < 64.0f || m_enemies[i]->GetPosition().x > SCREEN_WIDTH - 96.0f))
 			{
 				//ignore collisions if behind pipe
@@ -231,10 +230,6 @@ void GamescreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e)
 			m_enemies.erase(m_enemies.begin() + enemyIndexToDelete);
 		}
 	}
-
-}
-
-void GamescreenLevel1::UpdateCharacters() {
 
 }
 

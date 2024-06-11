@@ -34,9 +34,12 @@ Character::~Character()
 
 void Character::Render()
 {
+<<<<<<< HEAD
 	//Deleting the sprite if death
 	if (!m_alive) return;
 
+=======
+>>>>>>> parent of 6aefcb9 (bingus)
 	m_texture->Render(m_position, SDL_FLIP_NONE);
 
 	if (m_facing_direction == FACING_RIGHT)
@@ -89,9 +92,12 @@ void Character::MoveRight(float deltaTime)
 
 void Character::Update(float deltaTime, SDL_Event e)
 {
+<<<<<<< HEAD
 	//Deleting the updates if death
 	if (!m_alive) return;
 
+=======
+>>>>>>> parent of 6aefcb9 (bingus)
 	//deal with jumping first
 	if (m_jumping)
 	{
@@ -149,4 +155,3 @@ Vector2D Character::GetPosition()
 {
 	return m_position;
 }
-
