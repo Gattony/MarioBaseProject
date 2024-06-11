@@ -34,7 +34,6 @@ Character::~Character()
 
 void Character::Render()
 {
-	//Deleting the sprite if death
 	if (!m_alive) return;
 
 	m_texture->Render(m_position, SDL_FLIP_NONE);
@@ -89,7 +88,6 @@ void Character::MoveRight(float deltaTime)
 
 void Character::Update(float deltaTime, SDL_Event e)
 {
-	//Deleting the updates if death
 	if (!m_alive) return;
 
 	//deal with jumping first
