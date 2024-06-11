@@ -1,6 +1,5 @@
 #include "GamescreenLevel2.h"
-<<<<<<< HEAD
-=======
+
 
 using namespace std;
 
