@@ -156,6 +156,9 @@ bool Update()
 		case SDLK_2:
 			game_screen_manager->ChangeScreen(SCREEN_LEVEL1);
 			break;
+		case SDLK_3:
+			game_screen_manager->ChangeScreen(SCREEN_LEVEL2);
+			break;
 		}
 	}
 
@@ -178,7 +181,7 @@ int main(int argc, char* args[])
 			Mix_PlayMusic(g_music, -1);
 		}
 
-		game_screen_manager = new GamescreenManager(g_renderer, SCREEN_LEVEL1);
+		game_screen_manager = new GamescreenManager(g_renderer, SCREEN_INTRO);
 
 		//set the ticks
 		g_old_time = SDL_GetTicks();

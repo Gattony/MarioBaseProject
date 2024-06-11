@@ -14,6 +14,7 @@ using namespace std;
 #include <vector>
 
 class Texture2D;
+<<<<<<< HEAD
 class Character;
 class PowBlock;
 
@@ -23,3 +24,32 @@ class GamescreenLevel2 :Gamescreen
 	~(GamescreenLevel2);
 };
 #endif //GAMESCREENLEVEL2_H
+=======
+
+class GamescreenLevel2:public Gamescreen
+{
+public:
+	GamescreenLevel2(SDL_Renderer* renderer);
+	~GamescreenLevel2();
+
+	void Render(); 
+	void Update(float deltaTime, SDL_Event e);
+
+private:
+
+	float m_background_yPos;
+	LevelMap* m_level_map;
+
+	void SetLevelMap();
+	bool SetUpLevel();
+
+	Character* my_character;
+	Texture2D* m_background_texture;
+
+	//Characters
+	CharacterMario* m_mario;
+	CharacterLuigi* m_luigi;
+};
+
+#endif //_GAMESCREENLEVEL2_H
+>>>>>>> parent of 11f19ac (Revert "gamescreen level new")

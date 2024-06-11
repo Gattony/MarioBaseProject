@@ -16,15 +16,10 @@ GamescreenIntro::~GamescreenIntro()
 bool GamescreenIntro::SetUpLevel()
 {
 	titleText = new TextRenderer(50);
+	playText = new TextRenderer(25);
 
 	//load texture
 	m_background_texture = new Texture2D(m_renderer);
-
-	if (!m_background_texture->LoadFromFile("Images/Titlescreen.png"))
-	{
-		cout << "Failed to load the background texture" << endl;
-		return false;
-	}
 
 	return true;
 }
@@ -35,6 +30,7 @@ void GamescreenIntro::Render()
 	SDL_SetRenderDrawColor(m_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 
 	titleText->Render(m_renderer, "MARIO GAME!", SCREEN_WIDTH / 4 - 50, SCREEN_HEIGHT / 4);
+	playText->Render(m_renderer, "PRESS 2 TO PLAY", SCREEN_WIDTH / 3 - 30, SCREEN_HEIGHT / 2);
 }
 
 void GamescreenIntro::Update(float deltaTime, SDL_Event e)
