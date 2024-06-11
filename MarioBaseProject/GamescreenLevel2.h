@@ -1,7 +1,6 @@
 #pragma once
 #ifndef _GAMESCREENLEVEL2_H
 #define _GAMESCREENLEVEL2_H
-
 using namespace std;
 #include "LevelMap.h"
 #include "Gamescreen.h"
@@ -14,17 +13,9 @@ using namespace std;
 #include <vector>
 
 class Texture2D;
-<<<<<<< HEAD
 class Character;
 class PowBlock;
 
-class GamescreenLevel2 :Gamescreen
-{
-	GamescreenLevel2(SDL_Renderer* renderer) :Gamescreen(renderer);
-	~(GamescreenLevel2);
-};
-#endif //GAMESCREENLEVEL2_H
-=======
 
 class GamescreenLevel2:public Gamescreen
 {
@@ -52,4 +43,4 @@ private:
 };
 
 #endif //_GAMESCREENLEVEL2_H
->>>>>>> parent of 11f19ac (Revert "gamescreen level new")
+
