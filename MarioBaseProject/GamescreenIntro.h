@@ -5,7 +5,6 @@
 #include "Gamescreen.h"
 #include "Commons.h"
 #include <SDL.h>
-#include "TextRenderer.h"
 #include "Character.h"
 
 class Texture2D;
@@ -22,7 +21,6 @@ class GamescreenIntro :public Gamescreen
 
 	private:
 
-	TextRenderer* titleText;
 	Texture2D* m_background_texture;
 
 };
