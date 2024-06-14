@@ -23,6 +23,7 @@ class GamescreenIntro :public Gamescreen
 	private:
 
 	//Texts
+    TextRenderer* play2Text;
 	TextRenderer* titleText;
 	TextRenderer* playText;
 	Texture2D* m_background_texture;

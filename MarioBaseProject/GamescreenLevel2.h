@@ -6,9 +6,8 @@ using namespace std;
 #include "Gamescreen.h"
 #include "Commons.h"
 #include <SDL.h>
-#include "Character.h"
-#include "CharacterMario.h"
-#include "CharacterLuigi.h"
+#include "SpaceCharacter.h"
+#include "CharacterSpaceMario.h"
 #include "CharacterKoopa.h"
 #include <vector>
 
@@ -38,8 +37,7 @@ private:
 	Texture2D* m_background_texture;
 
 	//Characters
-	CharacterMario* m_mario;
-	CharacterLuigi* m_luigi;
+	CharacterSpaceMario* m_space_mario;
 };
 
 #endif //_GAMESCREENLEVEL2_H
