@@ -16,8 +16,9 @@ private:
 	float m_single_sprite_h;
 	float m_movement_speed;
 
+public:
 	void Render();
 	void Update(float deltaTime, SDL_Event e)override;
 };
 
-#endif //_METOR_H
+#endif //_METEOR_H

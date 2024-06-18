@@ -9,6 +9,7 @@ using namespace std;
 #include "SpaceCharacter.h"
 #include "CharacterSpaceMario.h"
 #include "CharacterKoopa.h"
+#include "Meteor.h"
 #include <vector>
 
 class Texture2D;
@@ -38,11 +39,13 @@ private:
 
 	//Characters
 	CharacterSpaceMario* m_space_mario;
+	Meteor* m_meteor;
 
 	//Meteors
-	void CreateMeteor(Vector2D position, float speed);
+	void CreateMeteor(Vector2D position);
 	void MeteorSpawn(float deltaTime, SDL_Event e);
 	float meteor_time;
+	vector<Meteor*> m_meteors;
 };
 
 #endif //_GAMESCREENLEVEL2_H

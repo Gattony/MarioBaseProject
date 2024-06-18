@@ -35,6 +35,8 @@ bool GamescreenLevel2::SetUpLevel()
 		return false;
 	}
 
+
+	CreateMeteor(Vector2D(SCREEN_WIDTH*0.5, SCREEN_HEIGHT*0.05));
 	return true;
 }
 
@@ -69,12 +71,32 @@ void GamescreenLevel2::Render()
 
 	m_space_mario->Render();
 
+	for (int i = 0; i < m_meteors.size(); i++)
+	{
+		m_meteors[i]->Render();
+	}
+
+
+}
+
+void GamescreenLevel2::CreateMeteor(Vector2D position)
+{
+	m_meteor = new Meteor(m_renderer, "Images/Meteor.png", m_level_map, position);
+
+	m_meteors.push_back(m_meteor);
 }
 
 void GamescreenLevel2::Update(float deltaTime, SDL_Event e)
 {
 	//Updatig characters
 	m_space_mario->Update(deltaTime, e);
+
+	for (int i = 0; i < m_meteors.size(); i++)
+	{
+		m_meteors[i]->Update(deltaTime, e);
+	}
+
+
 }
 
 
