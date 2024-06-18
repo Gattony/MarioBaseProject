@@ -12,13 +12,16 @@ public:
 	~Meteor(){}
 
 private:
+	bool m_injured;
 	float m_single_sprite_w;
 	float m_single_sprite_h;
 	float m_movement_speed;
 
 public:
+	bool GetInjured() { return m_injured; }
 	void Render();
 	void Update(float deltaTime, SDL_Event e)override;
+	void TakeDamage();
 };
 
 #endif //_METEOR_H

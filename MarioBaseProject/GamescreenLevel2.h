@@ -42,6 +42,7 @@ private:
 	Meteor* m_meteor;
 
 	//Meteors
+	void UpdateMeteors(float deltaTime, SDL_Event e);
 	void CreateMeteor(Vector2D position);
 	void MeteorSpawn(float deltaTime, SDL_Event e);
 	float meteor_time;

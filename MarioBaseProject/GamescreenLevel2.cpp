@@ -1,5 +1,6 @@
 #include "GamescreenLevel2.h"
 #include "SpaceCharacter.h"
+#include "Collisions.h"
 
 using namespace std;
 
@@ -77,7 +78,59 @@ void GamescreenLevel2::Render()
 		m_meteors[i]->Render();
 	}
 
+}
 
+void GamescreenLevel2::UpdateMeteors(float deltaTime, SDL_Event e)
+{
+	if (!m_meteors.empty())
+	{
+		int enemyIndexToDelete = -1;
+		for (unsigned int i = 0; i < m_meteors.size(); i++)
+		{
+			//Update
+			m_meteors[i]->Update(deltaTime, e);
+
+			//check to see if enemy collides with player
+			if ((m_meteors[i]->GetPosition().y > 300.0f || m_meteors[i]->GetPosition().y <= 64.0f) &&
+				(m_meteors[i]->GetPosition().x < 64.0f || m_meteors[i]->GetPosition().x > SCREEN_WIDTH - 96.0f))
+			{
+				//ignore collisions if behind pipe
+			}
+			else
+			{
+				//Collision circle
+				if (Collisions::Instance()->Box(m_meteors[i], m_space_mario))
+				{
+					if ([i]->GetInjured())
+					{
+						m_meteors[i]->SetAlive(false);
+					}
+					else
+					{
+						//kill mario
+						m_space_mario->SetAlive(false);
+					}
+				}
+			}
+
+			//if the enemy is no longer alive then schedule it for deletion
+			if (!m_meteors[i]->GetAlive())
+			{
+				enemyIndexToDelete = i;
+			}
+		}
+
+		//remove dead enemies -1 each update
+		if (enemyIndexToDelete != -1)
+		{
+			m_enemies.erase(m_enemies.begin() + enemyIndexToDelete);
+		}
+	}
+
+}
+
+void GamescreenLevel2::UpdateMeteors(float deltaTime, SDL_Event e)
+{
 }
 
 void GamescreenLevel2::CreateMeteor(Vector2D position)
@@ -89,15 +142,21 @@ void GamescreenLevel2::CreateMeteor(Vector2D position)
 
 void GamescreenLevel2::Update(float deltaTime, SDL_Event e)
 {
-	//Updatig characters
+	//Updating characters
 	m_space_mario->Update(deltaTime, e);
 
 	for (int i = 0; i < m_meteors.size(); i++)
 	{
 		m_meteors[i]->Update(deltaTime, e);
 	}
-
-
 }
 
+void GamescreenLevel2::MeteorSpawn(float deltaTime, SDL_Event e)
+{
+	meteor_time -= deltaTime;
+	if (meteor_time <= 0)
+	{
+
+	}
+}
 

@@ -5,6 +5,7 @@
 using namespace std;
 
 class Character;
+class SpaceCharacter;
 
 class Collisions
 {

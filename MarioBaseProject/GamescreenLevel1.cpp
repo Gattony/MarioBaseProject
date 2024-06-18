@@ -235,7 +235,8 @@ void GamescreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e)
 
 }
 
-void GamescreenLevel1::UpdateCharacters() {
+void GamescreenLevel1::UpdateCharacters() 
+{
 
 }
 
