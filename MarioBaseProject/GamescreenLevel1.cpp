@@ -191,6 +191,7 @@ void GamescreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e)
 			}
 			else
 			{
+				//Collision circle
 				if (Collisions::Instance()->Circle(m_enemies[i], m_mario))
 				{
 					if (m_enemies[i]->GetInjured())

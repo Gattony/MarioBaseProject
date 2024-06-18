@@ -47,6 +47,7 @@ void CharacterKoopa::Render()
 		left = m_single_sprite_w;
 
 	//Get the portion of the sprite sheet
+	// 
 	//{xPos, yPos, width of sprite, height of sprite)
 	SDL_Rect portion_of_sprite = { left,0, m_single_sprite_w, m_single_sprite_h };
 
