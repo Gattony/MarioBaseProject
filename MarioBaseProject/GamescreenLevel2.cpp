@@ -26,17 +26,18 @@ bool GamescreenLevel2::SetUpLevel()
 	//load texture
 	m_background_texture = new Texture2D(m_renderer);
 
-	m_space_mario = new CharacterSpaceMario(m_renderer, "Images/SpaceMario.png", Vector2D(100, 100), m_level_map);
+	//Rendering entities
+	m_space_mario = new CharacterSpaceMario(m_renderer, "Images/SpaceMario.png", Vector2D(50, 330), m_level_map);
 	m_background_yPos = 0.0f;
-
+	CreateMeteor(Vector2D(SCREEN_WIDTH * 0.25, SCREEN_HEIGHT * 0.05));
+	CreateMeteor(Vector2D(SCREEN_WIDTH * 0.75, SCREEN_HEIGHT * 0.05));
+#
 	if (!m_background_texture->LoadFromFile("Images/Space.png"))
 	{
 		cout << "Failed to load the background texture" << endl;
 		return false;
 	}
 
-
-	CreateMeteor(Vector2D(SCREEN_WIDTH*0.5, SCREEN_HEIGHT*0.05));
 	return true;
 }
 

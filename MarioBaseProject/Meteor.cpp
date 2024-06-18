@@ -11,15 +11,12 @@ Meteor::Meteor(SDL_Renderer* renderer, string imagePath, LevelMap* map, Vector2D
 
 void Meteor::Render()
 {
-
-	//Draw it facing the correct direction
-	
-		m_texture->Render(m_position, SDL_FLIP_NONE);
+	//Rendering the meteor
+	m_texture->Render(m_position, SDL_FLIP_NONE);
 	
 }
 
 void Meteor::Update(float deltaTime, SDL_Event e)
 {
 	Character::Update(deltaTime, e);
-
 }
