@@ -177,6 +177,7 @@
     <ClCompile Include="GamescreenLevel2.cpp" />
     <ClCompile Include="GamescreenManager.cpp" />
     <ClCompile Include="LevelMap.cpp" />
+    <ClCompile Include="Meteor.cpp" />
     <ClCompile Include="PowBlock.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="SpaceCharacter.cpp" />
@@ -205,6 +206,7 @@
     <ClInclude Include="GamescreenLevel2.h" />
     <ClInclude Include="GamescreenManager.h" />
     <ClInclude Include="LevelMap.h" />
+    <ClInclude Include="Meteor.h" />
     <ClInclude Include="PowBlock.h" />
     <ClInclude Include="SpaceCharacter.h" />
     <ClInclude Include="TextRenderer.h" />

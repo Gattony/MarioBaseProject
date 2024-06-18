@@ -30,14 +30,19 @@ private:
 	float m_background_yPos;
 	LevelMap* m_level_map;
 
+	//Mapping
 	void SetLevelMap();
 	bool SetUpLevel();
 
-	Character* my_character;
 	Texture2D* m_background_texture;
 
 	//Characters
 	CharacterSpaceMario* m_space_mario;
+
+	//Meteors
+	void CreateMeteor(Vector2D position, float speed);
+	void MeteorSpawn(float deltaTime, SDL_Event e);
+	float meteor_time;
 };
 
 #endif //_GAMESCREENLEVEL2_H
