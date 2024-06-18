@@ -80,7 +80,7 @@ bool GamescreenLevel1::SetUpLevel()
 
 void GamescreenLevel1::SetLevelMap()
 {
-	int map[MAP_HEIGHT][MAP_WIDTH] = { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+	int map[MAP_HEIGHT][MAP_WIDTH] = {{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
 									  { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
 									  { 1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1 },
 									  { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
