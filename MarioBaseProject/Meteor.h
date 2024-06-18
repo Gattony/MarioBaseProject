@@ -2,6 +2,7 @@
 #ifndef _METEOR_H
 #define _METEOR_H
 
+#include "LevelMap.h"
 #include "Character.h"
 using namespace std;
 
@@ -12,16 +13,16 @@ public:
 	~Meteor(){}
 
 private:
-	bool m_injured;
+	bool m_dead;
 	float m_single_sprite_w;
 	float m_single_sprite_h;
 	float m_movement_speed;
+	LevelMap* m_current_level_map;
 
 public:
-	bool GetInjured() { return m_injured; }
+
 	void Render();
 	void Update(float deltaTime, SDL_Event e)override;
-	void TakeDamage();
 };
 
 #endif //_METEOR_H
