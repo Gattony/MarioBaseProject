@@ -3,6 +3,7 @@
 #define _SPACECHARACTER_H
 using namespace std;
 #include "Commons.h"
+#include "Character.h"
 #include "constants.h"
 #include <SDL.h>
 #include <iostream>
@@ -13,7 +14,7 @@ class Texture2D;
 class MoveLeft;
 class MoveRight;
 
-class SpaceCharacter
+class SpaceCharacter:public Character
 {
 	public:
 		SpaceCharacter(SDL_Renderer* renderer, string imagePath, Vector2D start_position, LevelMap* map);

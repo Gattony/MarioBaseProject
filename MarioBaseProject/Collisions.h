@@ -2,6 +2,7 @@
 #ifndef _COLLISONS_H
 #define _COLLISIONS_H
 #include "Commons.h"
+#include "Character.h"
 using namespace std;
 
 class Character;

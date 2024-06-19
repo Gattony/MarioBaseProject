@@ -6,7 +6,7 @@
 using namespace std;
 
 
-SpaceCharacter::SpaceCharacter(SDL_Renderer* renderer, string imagePath, Vector2D start_position, LevelMap* map)
+SpaceCharacter::SpaceCharacter(SDL_Renderer* renderer, string imagePath, Vector2D start_position, LevelMap* map) :Character(renderer, imagePath, start_position, map)
 {
 	m_alive = true;
 	m_moving_left = false;

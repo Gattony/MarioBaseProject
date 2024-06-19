@@ -107,6 +107,19 @@ void GamescreenLevel2::Update(float deltaTime, SDL_Event e)
 			delete m_meteors[i]; // Free memory
 			m_meteors.erase(m_meteors.begin() + i); // Remove from vector and advance iterator
 		}
+
+		if (Collisions::Instance()->Circle(m_meteors[i], m_space_mario))
+		{
+			if (m_meteors[i]->GetInjured())
+			{
+				m_meteors[i]->SetAlive(false);
+			}
+			else
+			{
+				//kill mario
+				m_space_mario->SetAlive(false);
+			}
+		}
 	}
 }
 
