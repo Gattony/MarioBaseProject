@@ -108,25 +108,20 @@ void Character::Update(float deltaTime, SDL_Event e)
 	}
 	else 
 	{
-		    Character::Update(deltaTime, e);
+		//colisions position variables
+		int centralX_position = (int)(m_position.x + (m_texture->GetWidth() * 0.5)) / TILE_WIDTH;
+		int foot_position = (int)(m_position.y + m_texture->GetHeight()) / TILE_HEIGHT;
 
-    if (m_current_level_map == nullptr)
-    {
-        cout << "Error: LevelMap is null!" << endl;
-        return;
-    }
-
-    int centralX_position = (int)(m_position.x + m_texture->GetWidth() * 0.5) / TILE_WIDTH;
-    int foot_position = (int)(m_position.y + m_texture->GetHeight()) / TILE_HEIGHT;
-
-    if (m_current_level_map->GetTileAt(foot_position, centralX_position) == 1)
-    {
-        m_alive = false; // Mark as dead
-    }
-    else
-    {
-        AddGravity(deltaTime);
-    }
+		//deal with gravity
+		if (m_current_level_map->GetTileAt(foot_position, centralX_position) == 0)
+		{
+			AddGravity(deltaTime);
+		}
+		else
+		{
+			//collided with ground so we can jump again
+			m_can_jump = true;
+		}
 	}
 
 	if (m_moving_left)
