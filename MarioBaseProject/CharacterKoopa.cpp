@@ -94,7 +94,8 @@ void CharacterKoopa::Update(float deltaTime, SDL_Event e)
 	Character::Update(deltaTime, e);
 }
 
-void CharacterKoopa::CheckBoundaries() {
+void CharacterKoopa::CheckBoundaries() 
+{
 	if (m_position.x <= 0 && m_facing_direction == FACING_LEFT) 
 	{
 		m_facing_direction = FACING_RIGHT;
