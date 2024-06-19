@@ -100,6 +100,11 @@ void GamescreenLevel2::Update(float deltaTime, SDL_Event e)
 	for (int i = 0; i < m_meteors.size(); i++)
 	{
 		m_meteors[i]->Update(deltaTime, e);
+
+		if (m_meteors[i]->IsToBeDeleted()) {
+			delete m_meteors[i]; // Free memory
+			m_meteors.erase(m_meteors.begin() + i); // Remove from vector and advance iterator
+		}
 	}
 }
 

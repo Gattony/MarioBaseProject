@@ -40,7 +40,7 @@ class Character
 
       private:
           FACING m_facing_direction;
-          LevelMap* m_current_level_map;
+          
 
       protected:
           virtual void MoveLeft(float deltaTime);
@@ -52,7 +52,7 @@ class Character
           bool m_alive;
           float m_jump_force;
           float m_collision_radius;
-
+          LevelMap* m_current_level_map;
 
           SDL_Renderer* m_renderer;
           Vector2D m_position;

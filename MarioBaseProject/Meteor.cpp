@@ -8,7 +8,6 @@ Meteor::Meteor(SDL_Renderer* renderer, string imagePath, LevelMap* map, Vector2D
 {
 	m_position = start_position;
 }
-
 void Meteor::Render()
 {
 	//Rendering the meteor
@@ -18,5 +17,13 @@ void Meteor::Render()
 
 void Meteor::Update(float deltaTime, SDL_Event e)
 {
-	Character::Update(deltaTime, e);
+	int centralX_position = (int)(m_position.x + (m_texture->GetWidth() * 0.5)) / TILE_WIDTH;
+	int foot_position = (int)(m_position.y + m_texture->GetHeight()) / TILE_HEIGHT;
+	if (m_current_level_map->GetTileAt(foot_position, centralX_position) == 1)
+	{
+		m_toBeDeleted = true;
+	}
+	else {
+		AddGravity(deltaTime);
+	}
 }
