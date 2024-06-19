@@ -68,7 +68,7 @@ void SpaceCharacter::Jump()
 	if (m_can_jump && !m_jumping)
 	{
 		//JUMP
-		m_jump_force = INITIAL_JUMP_FORCE*2;
+		m_jump_force = INITIAL_JUMP_FORCE*1.5;
 		m_jumping = true;
 		m_can_jump = false;
 	}

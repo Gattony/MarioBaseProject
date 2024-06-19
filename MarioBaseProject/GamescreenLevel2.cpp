@@ -97,6 +97,8 @@ void GamescreenLevel2::Update(float deltaTime, SDL_Event e)
 	//Updating characters
 	m_space_mario->Update(deltaTime, e);
 
+	MeteorSpawn(deltaTime, e);
+
 	for (int i = 0; i < m_meteors.size(); i++)
 	{
 		m_meteors[i]->Update(deltaTime, e);
@@ -113,7 +115,14 @@ void GamescreenLevel2::MeteorSpawn(float deltaTime, SDL_Event e)
 	meteor_time -= deltaTime;
 	if (meteor_time <= 0)
 	{
+		// Generate random coordinates within a range
+		int randomX = rand() % SCREEN_WIDTH;
+		int randomY = rand() % (SCREEN_HEIGHT / 3);
 
+		CreateMeteor(Vector2D(randomX, randomY));
+		CreateMeteor(Vector2D(randomX, randomY));
+
+		meteor_time = 0.5f;
 	}
 }
 
