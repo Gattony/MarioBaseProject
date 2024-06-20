@@ -22,7 +22,6 @@ public:
 	bool GetInjured() { return m_injured; }
 	void Render();
 	void Update(float deltaTime, SDL_Event e)override;
-	void TakeDamage();
 	bool IsToBeDeleted() const {
 		return m_toBeDeleted;
 	}

@@ -99,7 +99,7 @@ void GamescreenLevel2::Update(float deltaTime, SDL_Event e)
 
 	MeteorSpawn(deltaTime, e);
 
-	for (int i = 0; i < m_meteors.size(); i++)
+	for (unsigned int i = 0; i < m_meteors.size(); i++)
 	{
 		m_meteors[i]->Update(deltaTime, e);
 

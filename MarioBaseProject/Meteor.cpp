@@ -12,7 +12,6 @@ void Meteor::Render()
 {
 	//Rendering the meteor
 	m_texture->Render(m_position, SDL_FLIP_NONE);
-	
 }
 
 void Meteor::Update(float deltaTime, SDL_Event e)
