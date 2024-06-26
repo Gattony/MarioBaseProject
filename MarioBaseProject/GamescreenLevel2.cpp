@@ -134,7 +134,7 @@ void GamescreenLevel2::MeteorSpawn(float deltaTime, SDL_Event e)
 
 		CreateMeteor(Vector2D(randomX, randomY));
 		CreateMeteor(Vector2D(randomX, randomY));
-
+		
 		meteor_time = 0.5f;
 	}
 }
